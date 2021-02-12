@@ -1,16 +1,22 @@
 import {observer} from 'mobx-react';
 import React from 'react'
-import {Counter} from './modal';
+import {Store} from './modal';
 
 type Props = {
-  counter: Counter
+  store: Store
 }
 
-function Hello({counter}: Props) {
+function Hello({store}: Props) {
   return <div>
-    <button onClick={() => counter.increase()}>+1</button>
-    <div>Count: {counter.count}</div>
-    <div>Double: {counter.double}</div>
+    <ul>
+      {store.rows.map(row => <li>
+        <div>
+          {row.id}
+          <input value={row.value} onChange={event => row.value = event.target.value}/>
+          <button onClick={() => store.newRow()}>+</button>
+        </div>
+      </li>)}
+    </ul>
   </div>
 }
 

@@ -2,9 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import Hello from './hello'
-import {Counter} from './modal';
+import {Store} from './modal';
 
 ReactDOM.render(
-  <Hello counter={new Counter()}/>,
+  <Hello store={new Store()}/>,
   document.body
 )

@@ -1,14 +1,21 @@
-import {action, computed, observable} from 'mobx';
+import {action, observable} from 'mobx';
 
-export class Counter {
-  @observable count: number = 0
+let rowId = 0;
 
-  @action increase() {
-    this.count += 1;
+function newRowId() {
+  return rowId++;
+}
+
+// Notice: should be a class, not a normal object
+class Row {
+  @observable id: number = newRowId();
+  @observable value: string = '';
+}
+
+export class Store {
+  @observable rows: Row [] = [new Row()]
+
+  @action newRow() {
+    this.rows.push(new Row())
   }
-
-  @computed get double() {
-    return this.count * 2;
-  }
-
 }
